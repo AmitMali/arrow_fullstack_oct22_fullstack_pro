@@ -11,11 +11,11 @@ const data = {
   pageHeading: "Welcome To React FullStack",
 };
 
-//create root endpoint to handle get request
+const studentRouter = require("./routes/students");
 app.get("/", (req, res) => {
   res.json(data);
 });
-
+app.use("/students", studentRouter);
 app.listen(port, () => {
-  console.log(`server started at http://localhost:/${port}`);
+  console.log(`server started at http://localhost:${port}`);
 });

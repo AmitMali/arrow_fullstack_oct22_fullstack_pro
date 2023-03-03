@@ -13,7 +13,7 @@ const Home = () => {
   console.log(data);
   return (
     <div>
-      <h1 className="text-6xl">{data.pageHeading}</h1>
+      <h1 className="text-4xl font-bold text-blue-900">{data.pageHeading}</h1>
     </div>
   );
 };
