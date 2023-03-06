@@ -10,7 +10,7 @@ const data = {
   },
   pageHeading: "Welcome To React FullStack",
 };
-
+    
 const studentRouter = require("./routes/students");
 app.get("/", (req, res) => {
   res.json(data);
