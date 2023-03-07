@@ -14,7 +14,10 @@ studentRouter
   });
 
 studentRouter.post("/new", (req, res) => {
-  res.status(201).send("create new students here");
+  res.status(201).json({
+    message: "data recive success",
+  });
+  console.log(req.body);
 });
 
 module.exports = studentRouter;

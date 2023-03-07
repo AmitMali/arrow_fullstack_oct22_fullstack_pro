@@ -1,25 +1,18 @@
-import Navbar from "./components/Navbar";
+import MainLayoute from "./Layoutes/MainLayoute";
 import Home from "./pages/Home";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
+import CreateStudent from "./pages/students/CreateStudent";
+import AllStudents from "./pages/students/AllStudents";
 function App() {
   return (
     <>
-      {/*<!-- Component: One column even layout --> */}
-      <section>
-        <Navbar />
-        <div className="container px-6 m-auto">
-          <div className="grid grid-cols-4 gap-6 md:grid-cols-8 lg:grid-cols-12">
-            <div className="col-span-4 md:col-span-8 lg:col-span-12">
-              <Router>
-                <Routes>
-                  <Route path="/" element={<Home />} />
-                </Routes>
-              </Router>
-            </div>
-          </div>
-        </div>
-      </section>
-      {/*<!-- End One column even layout --> */}
+      <Routes>
+        <Route element={<MainLayoute />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/students" element={<AllStudents />} />
+          <Route path="/students/new" element={<CreateStudent />} />
+        </Route>
+      </Routes>
     </>
   );
 }

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import { Link } from "react-router-dom";
 export default function Navbar() {
   const [isToggleOpen, setIsToggleOpen] = useState(false);
 
@@ -14,12 +14,12 @@ export default function Navbar() {
             role="navigation"
           >
             {/*      <!-- Brand logo --> */}
-            <a
+            <Link
               id="WindUI"
               aria-label="WindUI logo"
               aria-current="page"
               className="flex items-center gap-2 whitespace-nowrap py-3 text-lg focus:outline-none lg:flex-1"
-              href="javascript:void(0)"
+              to="javascript:void(0)"
             >
               <svg
                 width="300"
@@ -43,7 +43,7 @@ export default function Navbar() {
                 />
               </svg>
               Brand
-            </a>
+            </Link>
             {/*      <!-- Mobile trigger --> */}
             <button
               className={`relative order-10 block h-10 w-10 self-center lg:hidden
@@ -83,38 +83,38 @@ export default function Navbar() {
               }`}
             >
               <li role="none" className="flex items-stretch">
-                <a
+                <Link
                   role="menuitem"
                   aria-haspopup="false"
                   tabIndex="0"
                   className="flex items-center gap-2 py-4 transition-colors duration-300 hover:text-emerald-500 focus:bg-emerald-50 focus:outline-none focus-visible:outline-none lg:px-8"
-                  href="javascript:void(0)"
+                  to="/"
                 >
                   <span>Home</span>
-                </a>
+                </Link>
               </li>
               <li role="none" className="flex items-stretch">
-                <a
+                <Link
                   role="menuitem"
                   aria-current="page"
                   aria-haspopup="false"
                   tabIndex="0"
                   className="flex items-center gap-2 py-4 text-emerald-500 transition-colors duration-300 hover:text-emerald-600 focus:bg-emerald-50 focus:outline-none focus-visible:outline-none lg:px-8"
-                  href="javascript:void(0)"
+                  to="/students"
                 >
-                  <span>Features</span>
-                </a>
+                  <span>Students</span>
+                </Link>
               </li>
               <li role="none" className="flex items-stretch">
-                <a
+                <Link
                   role="menuitem"
                   aria-haspopup="false"
                   tabIndex="0"
                   className="flex items-center gap-2 py-4 transition-colors duration-300 hover:text-emerald-500 focus:bg-emerald-50 focus:outline-none focus-visible:outline-none lg:px-8"
-                  href="javascript:void(0)"
+                  to="students/new"
                 >
-                  <span>Pricing</span>
-                </a>
+                  <span>Create Students</span>
+                </Link>
               </li>
               <li role="none" className="flex items-stretch">
                 <a
