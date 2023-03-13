@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import FormInput from "../../components/FormInput";
 
 export default function CreateStudent() {
   const formInputes = [
@@ -54,14 +55,21 @@ export default function CreateStudent() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setFormErrors(handleErrors(formData));
-    // axios
-    //   .post("http://localhost:8023/students/new", formData)
-    //   .then((response) => {
-    //     // setResponse(response);
-    //   })
-    //   .catch((err) => console.log(err));
+    const errors = handleErrors(formData);
+    setFormErrors(errors);
+    console.log(formData);
+
+    axios
+      .post("http://localhost:8023/students/new", formData)
+      .then((response) => {
+        setResponse(response);
+      })
+      .catch((err) => console.log(err));
+
     setIsSubmit(true);
+
+    // TODO:reset form data
+    console.log(response);
   };
 
   const handleErrors = (form_Data) => {
@@ -96,28 +104,15 @@ export default function CreateStudent() {
       <div className="  sm:w-1/2 mx-auto ">
         <div className="">
           <form onSubmit={handleSubmit}>
-            {formInputes.map((inp) => {
+            {formInputes.map((inp, index) => {
               return (
                 <>
-                  <div className="mb-2 " key={inp.name}>
-                    <div className="relative my-6">
-                      <input
-                        id={inp.name}
-                        type={inp.type}
-                        name={inp.name}
-                        placeholder={inp.placeholder}
-                        value={formData[`${inp.name}`]}
-                        className="peer relative h-10 w-full rounded border border-slate-200 px-4 text-sm text-slate-500 placeholder-transparent outline-none transition-all autofill:bg-white invalid:border-pink-500 invalid:text-pink-500 focus:border-emerald-500 focus:outline-none invalid:focus:border-pink-500 focus-visible:outline-none disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-400"
-                        onChange={handleChange}
-                      />
-                      <label
-                        htmlFor={inp.name}
-                        className="absolute left-2 -top-2 z-[1] cursor-text px-2 text-xs text-slate-400 transition-all before:absolute before:top-0 before:left-0 before:z-[-1] before:block before:h-full before:w-full before:bg-white before:transition-all peer-placeholder-shown:top-2.5 peer-placeholder-shown:text-sm peer-required:after:text-pink-500 peer-required:after:content-['\00a0*'] peer-invalid:text-pink-500 peer-focus:-top-2 peer-focus:cursor-default peer-focus:text-xs peer-focus:text-emerald-500 peer-invalid:peer-focus:text-pink-500 peer-disabled:cursor-not-allowed peer-disabled:text-slate-400 peer-disabled:before:bg-transparent"
-                      >
-                        {inp.label}
-                      </label>
-                    </div>
-                  </div>
+                  <FormInput
+                    {...inp}
+                    value={formData[inp.name]}
+                    handleChange={handleChange}
+                    index={index}
+                  />
                 </>
               );
             })}
