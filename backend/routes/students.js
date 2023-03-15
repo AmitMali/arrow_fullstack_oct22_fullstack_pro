@@ -17,8 +17,8 @@ studentRouter
 studentRouter.post("/new", (req, res) => {
   console.log(req.body);
   console.log(isObjectValueofKeysEmpty(req.body));
-  const { userName, userMail, userPassword, userCourse, userContact } =
-    req.body;
+  // const { userName, userMail, userPassword, userCourse, userContact } =
+  // req.body;
   if (isObjectValueofKeysEmpty(req.body)) {
     res.status(204).json({ error: "invalid form data" });
   } else {

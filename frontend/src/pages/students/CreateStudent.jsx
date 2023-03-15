@@ -129,7 +129,9 @@ export default function CreateStudent() {
                 </div>
               </>
             ) : (
-              <></>
+              <>
+                <div className=" text-red-600 p-3 ">check errors</div>
+              </>
             )}
           </form>
         </div>
