@@ -15,6 +15,7 @@ const RegisterStudent = () => {
     register,
     formState: { errors },
     handleSubmit,
+    reset,
   } = useForm();
 
   const onFromSubmit = (data) => {
@@ -22,7 +23,7 @@ const RegisterStudent = () => {
       .post("http://localhost:8023/students/new", data)
       .then((response) => {
         setResponse(response);
-        console.log(response);
+        reset();
       })
       .catch((err) => console.log(err));
   };
@@ -228,6 +229,18 @@ const RegisterStudent = () => {
                 <span>register</span>
               </button>
             </div>
+          </div>
+          <div className="mb-2">
+            {response && response.status === 201 ? (
+              <div
+                className=" w-full mx-auto px-4 py-3 text-sm border rounded border-emerald-100 bg-emerald-50 text-emerald-500"
+                role="alert"
+              >
+                <p>Register Successfull</p>
+              </div>
+            ) : (
+              <></>
+            )}
           </div>
         </div>
       </form>

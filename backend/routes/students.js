@@ -31,6 +31,7 @@ const userSchema = new mongoose.Schema(
   { timestamps: true }
 );
 const userModel = mongoose.model("user", userSchema);
+
 studentRouter
   .get("/", async (req, res) => {
     try {
@@ -52,12 +53,10 @@ studentRouter
 
 studentRouter.use(express.json()).post("/new", async (req, res) => {
   if (!req.body) {
-    res
-      .status(400)
-      .json({
-        error:
-          error.message || "Some error occured while reciving data from client",
-      });
+    res.status(400).json({
+      error:
+        error.message || "Some error occured while reciving data from client",
+    });
     return;
   }
   try {
