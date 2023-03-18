@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 const RegisterStudent = () => {
   const courses = [
+    { "": "" },
     { name: "fullStack", label: "Full Stack" },
     { name: "webDevelopment", label: "Web Development" },
     { name: "redHat", label: "Red Hat" },
@@ -103,9 +104,9 @@ const RegisterStudent = () => {
           <div className="mb-2 ">
             <div className="relative my-6">
               <select
-                name="userSubject"
-                {...register("userSubject", {
-                  required: "Enter Password",
+                name="userCourse"
+                {...register("userCourse", {
+                  required: "Select Course",
                 })}
                 className={`peer relative h-10 w-full rounded border border-slate-200 px-4 text-sm text-slate-500 placeholder-transparent outline-none transition-all autofill:bg-white focus:border-emerald-500 focus:outline-none  focus-visible:outline-none disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-400`}
               >
@@ -118,7 +119,7 @@ const RegisterStudent = () => {
                 Course
               </label>
               <div className="text-pink-500">
-                {errors?.userSubject && errors.userSubject.message}
+                {errors?.userCourse && errors.userCourse.message}
               </div>
             </div>
           </div>
