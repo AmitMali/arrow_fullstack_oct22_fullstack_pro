@@ -93,7 +93,6 @@ export default function CreateStudent() {
     return errors;
   };
   useEffect(() => {
-    console.log(formErrors);
     if (Object.keys(formErrors).length == 0 && isSubmit) {
       console.log(formData);
     }

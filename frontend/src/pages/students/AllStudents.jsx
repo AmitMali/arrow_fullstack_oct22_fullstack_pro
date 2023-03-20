@@ -53,7 +53,7 @@ const AllStudents = () => {
                 className="h-10 px-4 text-sm font-medium border-l first:border-l-0 stroke-slate-700 text-slate-700 bg-slate-100"
               ></th>
             </tr>
-            {console.log(allStudents)}
+
             {allStudents.map((student) => {
               return (
                 <tr>
