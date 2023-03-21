@@ -4,6 +4,8 @@ const cors = require("cors");
 const port = 8023;
 const mongoose = require("mongoose");
 const mongodbURL = "mongodb://127.0.0.1:27017/arrow_fullstack_oct22";
+const studentRouter = require("./routes/students");
+const authRouter = require("./routes/authRoutes");
 try {
   mongoose.connect(mongodbURL, {
     useNewUrlParser: true,
@@ -24,11 +26,11 @@ const data = {
   pageHeading: "Welcome To React FullStack",
 };
 
-const studentRouter = require("./routes/students");
 app.get("/", (req, res) => {
   res.json(data);
 });
 app.use("/students", studentRouter);
+app.use("/auth/", authRouter);
 
 app.listen(port, () => {
   console.log(`server started at http://localhost:${port}`);
