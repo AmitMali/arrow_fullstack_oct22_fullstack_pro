@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import { useForm } from "react-hook-form";
 import axios from "axios";
 const LoginForm = () => {
@@ -9,13 +11,16 @@ const LoginForm = () => {
     reset,
   } = useForm();
 
+  const navigate = useNavigate();
+
   const onFromSubmit = (data) => {
     axios
       .post("http://localhost:8023/auth/login", data)
       .then((response) => {
         if (response.data.success) {
-          alert("login Success");
           reset();
+          console.log(response.data.token);
+          navigate("/user");
         } else {
           alert("Login Failed");
         }
@@ -56,12 +61,6 @@ const LoginForm = () => {
                 type="password"
                 {...register("userPassword", {
                   required: "Enter Password",
-                  pattern: {
-                    value:
-                      /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
-                    message:
-                      "It should be at least 8 characters long ,It must have a number,It must have a capital alphabet,It must have a small alphabet,It must have a special character",
-                  },
                 })}
                 className={`peer relative h-10 w-full rounded border border-slate-200 px-4 text-sm text-slate-500 placeholder-transparent outline-none transition-all autofill:bg-white focus:border-emerald-500 focus:outline-none  focus-visible:outline-none disabled:cursor-not-allowed disabled:bg-slate-50 disabled:text-slate-400`}
               />

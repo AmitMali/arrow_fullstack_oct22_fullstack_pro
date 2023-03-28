@@ -1,15 +1,17 @@
 const express = require("express");
+require("dotenv").config();
 const app = express();
 const cors = require("cors");
 const port = 8023;
 const mongoose = require("mongoose");
-const mongodbURL = "mongodb://127.0.0.1:27017/arrow_fullstack_oct22";
+const mongodbURL = process.env.Mongo_DB_URL;
 const studentRouter = require("./routes/students");
 const authRouter = require("./routes/authRoutes");
 try {
   mongoose.connect(mongodbURL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    autoIndex: true,
     dbName: "arrow_fullstack_oct22",
   });
 } catch (error) {
