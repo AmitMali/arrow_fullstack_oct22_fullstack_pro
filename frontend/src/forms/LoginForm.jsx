@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import { setCookie } from "../utils/utils";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 const LoginForm = () => {
@@ -20,6 +20,7 @@ const LoginForm = () => {
         if (response.data.success) {
           reset();
           console.log(response.data.token);
+          setCookie("token", response.data.token, 1);
           navigate("/user");
         } else {
           alert("Login Failed");

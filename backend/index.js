@@ -7,6 +7,8 @@ const mongoose = require("mongoose");
 const mongodbURL = process.env.Mongo_DB_URL;
 const studentRouter = require("./routes/students");
 const authRouter = require("./routes/authRoutes");
+const { isAthorized } = require("./middleware/authMiddleware");
+const userRouter = require("./routes/user");
 try {
   mongoose.connect(mongodbURL, {
     useNewUrlParser: true,
@@ -32,6 +34,7 @@ app.get("/", (req, res) => {
   res.json(data);
 });
 app.use("/students", studentRouter);
+app.use("/user", isAthorized, userRouter);
 app.use("/auth/", authRouter);
 
 app.listen(port, () => {

@@ -1,13 +1,19 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { getToken } from "../../utils/utils";
 const AllStudents = () => {
   const [allStudents, setAllStudents] = useState([]);
   const apiUrl = "http://localhost:8023/students/";
 
   //fetch students and set to state variable
   const getStudents = async () => {
-    const resp = await axios.get(apiUrl);
+    const resp = await axios.get(apiUrl, {
+      headers: {
+        authorization: getToken(),
+      },
+    });
+    console.log(resp);
     setAllStudents(await resp.data);
   };
 

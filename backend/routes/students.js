@@ -1,4 +1,5 @@
 const express = require("express");
+const { isAthorized } = require("../middleware/authMiddleware");
 const studentRouter = express.Router();
 const {
   getAllUsers,
@@ -6,7 +7,7 @@ const {
   createUser,
 } = require("../controllers/userController");
 
-studentRouter.get("/", getAllUsers).get("/:id", getUser);
+studentRouter.use(isAthorized).get("/", getAllUsers).get("/:id", getUser);
 
 studentRouter.post("/new", express.json(), createUser);
 

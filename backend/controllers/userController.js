@@ -19,6 +19,16 @@ const getUser = async (req, res) => {
   }
 };
 
+const getUserProfile = async (req, res) => {
+  const { user_id } = req.body;
+  try {
+    const user = await userModel.findById(user_id);
+    res.status(200).json(user);
+  } catch (error) {
+    res.status(404).json({ error: error.msg });
+  }
+};
+
 const createUser = async (req, res) => {
   if (!req.body) {
     res.status(400).json({
@@ -41,4 +51,4 @@ const createUser = async (req, res) => {
   }
 };
 
-module.exports = { getAllUsers, getUser, createUser };
+module.exports = { getAllUsers, getUser, createUser, getUserProfile };
